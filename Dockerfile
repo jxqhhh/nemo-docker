@@ -4,7 +4,7 @@ FROM tensorflow/tensorflow:1.15.5-gpu-py3
 LABEL description="Container for use with NEMO"
 
 # install packages
-RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+RUN rm /etc/apt/sources.list.d/cuda.list && rm /etc/apt/sources.list.d/nvidia-ml.list && apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
         libglib2.0-0 libxext6 libsm6 libxrender1 \
         git mercurial subversion \
         ffmpeg vim tmux yasm android-tools-adb
@@ -15,7 +15,9 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_6
         /bin/bash ~/anaconda.sh -b -p /opt/conda && \
         rm ~/anaconda.sh && \
         ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-        echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+        echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+ADD .condarc /root/.condarc
+RUN	conda clean -i && \
         conda update conda && \
         conda update anaconda && \
         conda update --all && \
@@ -34,7 +36,8 @@ RUN chmod a+rx /usr/local/bin/youtube-dl
 ADD environment1.yml /environment1.yml
 RUN conda env update -f /environment1.yml
 ADD environment2.yml /environment2.yml
-RUN conda env update -f /environment2.yml
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    conda env update -f /environment2.yml
 
 # download android ndk 
 RUN wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip?hl=ko -O /root/android-ndk-r14b.zip 

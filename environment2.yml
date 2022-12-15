@@ -5,4 +5,5 @@ dependencies:
   - python=3.5
   - imageio
   - pip:
+    - protobuf==3.19.0
     - tensorflow==1.14
