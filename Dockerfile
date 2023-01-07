@@ -34,10 +34,8 @@ RUN chmod a+rx /usr/local/bin/youtube-dl
 
 # create conda environments
 ADD environment1.yml /environment1.yml
-RUN conda env update -f /environment1.yml
-ADD environment2.yml /environment2.yml
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    conda env update -f /environment2.yml
+    conda env update -f /environment1.yml
 
 # download android ndk 
 RUN wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip?hl=ko -O /root/android-ndk-r14b.zip 
