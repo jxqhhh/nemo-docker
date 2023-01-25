@@ -50,12 +50,11 @@ if [ "${mode}" == "create" ];then
 	dst=/data/jinxinqi/Dataset/SuperResolution/NEMO-Dataset/${content}/image
 	_set_bitrate ${input_resolution}
 	_set_input_video_name
-	sudo mkdir -p ${dst}/${input_video_name}
-	sudo mv ${src}/${input_video_name}/${postfix}/*.raw ${dst}/${input_video_name}
+	sudo mkdir -p ${dst}
+	sudo mv ${src}/${input_video_name}/${postfix} ${dst}/${input_video_name}
 	sudo chown -R jinxinqi ${dst}/${input_video_name}
 	_set_output_video_name
-	sudo mkdir -p ${dst}/${output_video_name}
-	sudo mv ${src}/${output_video_name}/${postfix}/*.raw ${dst}/${output_video_name}
+	sudo mv ${src}/${output_video_name}/${postfix} ${dst}/${output_video_name}
 	sudo chown -R jinxinqi ${dst}/${output_video_name}
 elif [ "${mode}" == "delete" ];then
 	echo "Step 1: delete data"
