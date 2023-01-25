@@ -1,12 +1,12 @@
 #! /bin/bash
 
 #import subprocess
-#process=subprocess.Popen("./nemo-create-data.sh -c 3 -i 240 -o 1080 -m create",stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
+#process=subprocess.Popen("./nemo-data.sh -c 3 -i 240 -o 1080 -m create",stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
 #proc_stdout = process.communicate()[0].strip()
 #print(proc_stdout)
 
 #import subprocess
-#process=subprocess.Popen("./nemo-create-data.sh -c 3 -i 240 -o 1080 -m delete",stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
+#process=subprocess.Popen("./nemo-data.sh -c 3 -i 240 -o 1080 -m delete",stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
 #proc_stdout = process.communicate()[0].strip()
 #print(proc_stdout)
 
@@ -46,15 +46,16 @@ if [ "${mode}" == "create" ];then
 
 	echo "Step 2: move data to the dataset folder"
 	src=/data/jinxinqi/SuperResolution/nemo/nemo-docker-volume/nemo-data/${content}/image
+	postfix=exported
 	dst=/data/jinxinqi/Dataset/SuperResolution/NEMO-Dataset/${content}/image
 	_set_bitrate ${input_resolution}
 	_set_input_video_name
 	sudo mkdir -p ${dst}/${input_video_name}
-	sudo mv ${src}/${input_video_name}/*.raw ${dst}/${input_video_name}
+	sudo mv ${src}/${input_video_name}/${postfix}/*.raw ${dst}/${input_video_name}
 	sudo chown -R jinxinqi ${dst}/${input_video_name}
 	_set_output_video_name
 	sudo mkdir -p ${dst}/${output_video_name}
-	sudo mv ${src}/${output_video_name}/*.raw ${dst}/${output_video_name}
+	sudo mv ${src}/${output_video_name}/${postfix}/*.raw ${dst}/${output_video_name}
 	sudo chown -R jinxinqi ${dst}/${output_video_name}
 elif [ "${mode}" == "delete" ];then
 	echo "Step 1: delete data"
