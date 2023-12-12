@@ -4,4 +4,5 @@ dependencies:
   - networkx
   - imageio
   - tensorflow-gpu==1.15
-  - opencv-python==4.7.0.68
+  - pip:
+    - opencv-python==4.7.0.68

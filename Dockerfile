@@ -38,9 +38,9 @@ RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && 
     conda env update -f /environment1.yml
 
 # download android ndk 
-RUN mkdir /worksapce && \
-    wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip?hl=ko -O /workspace/android-ndk-r14b.zip 
-RUN unzip /workspace/android-ndk-r14b.zip
+RUN mkdir /workspace && \
+    wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip -O /workspace/android-ndk-r14b.zip
+RUN unzip /workspace/android-ndk-r14b.zip -d /workspace
 RUN ln -s /workspace/android-ndk-r14b/toolchains/llvm/prebuilt/linux-x86_64 /workspace/android-ndk-r14b/toolchains/llvm/prebuilt/linux-x86
 RUN ln -s /workspace/android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 /workspace/android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86
 
