@@ -40,9 +40,9 @@ RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && 
 # download android ndk 
 RUN mkdir /workspace && \
     wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip -O /workspace/android-ndk-r14b.zip
-RUN unzip /workspace/android-ndk-r14b.zip -d /workspace
-RUN ln -s /workspace/android-ndk-r14b/toolchains/llvm/prebuilt/linux-x86_64 /workspace/android-ndk-r14b/toolchains/llvm/prebuilt/linux-x86
-RUN ln -s /workspace/android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 /workspace/android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86
+RUN unzip /workspace/android-ndk-r14b.zip -d /
+RUN ln -s /android-ndk-r14b/toolchains/llvm/prebuilt/linux-x86_64 /android-ndk-r14b/toolchains/llvm/prebuilt/linux-x86
+RUN ln -s /android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 /android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86
 
 # add environment variables
 ENV NEMO_CODE_ROOT /workspace/nemo
