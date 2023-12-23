@@ -6,3 +6,6 @@ dependencies:
   - tensorflow-gpu==1.15
   - pip:
     - opencv-python==4.7.0.68
+    - scikit-image
+    - scikit-learn
+    - torch
